@@ -9,18 +9,23 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+    public function __construct(){
+        //未登录的只能访问show
+        $this->middleware('auth', ['except' => []]);
+    }
 	//个人页面展示
     public function show(User $user){
     	return view('users.show', compact('user'));
     }
     //个人编辑页面展示
     public function edit(User $user){
+        $this->authorize('update', $user);
     	return view('users.edit', compact('user'));
     }
     //个人页面编辑
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user){
     	// dd(strtolower($request->avatar->getClientOriginalExtension()));
-
+        $this->authorize('update', $user);
     	$data = $request->all();
 
     	if($request->avatar){
