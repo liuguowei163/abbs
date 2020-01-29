@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function __construct(){
         //未登录的只能访问show
-        $this->middleware('auth', ['except' => []]);
+        $this->middleware('auth', ['except' => ['show']]);
     }
 	//个人页面展示
     public function show(User $user){
