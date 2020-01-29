@@ -17,14 +17,14 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="#">最后回复</a></li>
-                    <li role="presentation"><a href="#">最新发布</a></li>
+                    <li role="presentation" class="{{ active_class(! if_query('order', 'recent')) }}"><a href="{{ Request::url() }}?order=default">最后回复</a></li>
+                    <li role="presentation" class="{{ active_class(if_query('order', 'recent')) }}"><a href="{{ Request::url() }}?order=recent">最新发布</a></li>
                 </ul>
             </div>
             <div class="panel-body">
                 @include('topics._topic_list', ['topics'=>$topics])
 
-                {{!! $topics->appends(Request::except('page'))->render() !!}}
+                {!! $topics->appends(Request::except('page'))->render() !!}
             </div>
         </div>
     </div>
