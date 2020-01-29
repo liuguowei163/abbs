@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Topic;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -14,8 +16,9 @@ class UsersController extends Controller
         $this->middleware('auth', ['except' => ['show']]);
     }
 	//个人页面展示
-    public function show(User $user){
-    	return view('users.show', compact('user'));
+    public function show(User $user, Topic $topic){
+        $topics = $topic->recent()->where('user_id', Auth::id())->paginate(5);
+    	return view('users.show', compact('user', 'topics'));
     }
     //个人编辑页面展示
     public function edit(User $user){

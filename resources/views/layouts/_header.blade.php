@@ -34,8 +34,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>
+                    <li><a href="{{ route('login') }}">登录</a></li>
+                    <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -47,7 +47,14 @@
                    
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ route('users.show', Auth::id()) }}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                    个人中心
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('users.edit', Auth::id()) }}">
+                                    <span class="glyphicon glyphicon-edit"></span>
                                     编辑资料
                                 </a>
                             </li>
@@ -55,6 +62,7 @@
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
+                                    <span class="glyphicon glyphicon-log-out"></span>
                                     退出登录
                                 </a>
 
