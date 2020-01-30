@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title', 'LaraBBs') - Laravel 进阶教程</title>
+	<meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 	@yield('styles')
 </head>
